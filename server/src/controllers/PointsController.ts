@@ -7,7 +7,16 @@ class PointsController {
 
     const trx = await knex.transaction()
 
-    const point = { image: 'image-fake', name, email, whatsapp, latitude, longitude, city, uf }
+    const point = {
+      image: 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=50',
+      name,
+      email,
+      whatsapp,
+      latitude,
+      longitude,
+      city,
+      uf
+    }
 
     const insertedIds = await trx('point').insert(point)
 
