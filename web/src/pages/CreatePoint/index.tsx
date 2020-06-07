@@ -9,8 +9,8 @@ import './styles.css'
 
 import logo from '../../assets/logo.svg'
 import api from '../../services/api'
-import { format } from 'path'
 import Dropzone from './../../components/Dropzone'
+import SuccessMessage from './../../components/SuccessMessage'
 
 interface Item {
   id: number
@@ -42,6 +42,7 @@ const CreatePoint = () => {
     email: '',
     whatsapp: ''
   })
+  const [successMessageVisible, setSuccessMessageVisible] = useState(false)
 
   const history = useHistory()
 
@@ -135,13 +136,17 @@ const CreatePoint = () => {
 
     await api.post('points', data)
 
-    alert('ponto criado')
-
-    history.push('/')
+    setSuccessMessageVisible(true)
+    setTimeout(function () {
+      setSuccessMessageVisible(false)
+      history.push('/')
+    }, 2000)
   }
 
   return (
     <div id="page-create-point">
+      <SuccessMessage show={successMessageVisible} />
+
       <header>
         <img src={logo} alt="Ecoleta" />
 
